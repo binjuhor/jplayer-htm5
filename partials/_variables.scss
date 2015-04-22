@@ -1,0 +1,27 @@
+//Setting
+$import : false;
+$content-size: 1170px;
+$default_padding: 0px;
+
+// colors
+
+$text-color: #000; // base color
+$text-active: #1ba3d9;  //Color active
+
+// fonts
+$Aw: 'FontAwesome';
+$Ro: 'Roboto', sans-serif;
+$Ro-s: 'Roboto Slab', serif;
+$Title-font: 'Roboto Condensed', sans-serif;
+$Formal-font: 'Playfair Display', serif;
+//Font size
+$body-size: 14px;
+
+//header height
+$base-line: 30px;
+
+// z-index
+$bg-zindex: 0;
+$content-zindex: 1;
+$nav-zindex: 2;
+$header-zindex: 3;

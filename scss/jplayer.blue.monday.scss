@@ -1,0 +1,385 @@
+@import 'bourbon'; // http://bourbon.io/
+
+@import '../partials/variables'; // colors, fonts etc...
+
+@import '../partials/mixins'; // custom mixins
+
+@import '../partials/layout'; // responsive grid and media queries
+
+@import '../partials/fonts';
+/* --------------------------------
+
+Primary style
+
+-------------------------------- */
+body{
+	background: rgba(#000, .5);
+	.container{
+		width: 1170px;
+		margin:0 auto;
+	}
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+          animation-name: fadeInUp;
+}
+
+.gradient{
+	background: rgba(51,89,172,1);
+	background: -moz-linear-gradient(left, rgba(51,89,172,1) 0%, rgba(27,163,217,1) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(51,89,172,1)), color-stop(100%, rgba(27,163,217,1)));
+	background: -webkit-linear-gradient(left, rgba(51,89,172,1) 0%, rgba(27,163,217,1) 100%);
+	background: -o-linear-gradient(left, rgba(51,89,172,1) 0%, rgba(27,163,217,1) 100%);
+	background: -ms-linear-gradient(left, rgba(51,89,172,1) 0%, rgba(27,163,217,1) 100%);
+	background: linear-gradient(to right, rgba(51,89,172,1) 0%, rgba(27,163,217,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3359ac', endColorstr='#1ba3d9', GradientType=1 );
+}
+
+$jplayer-images-base-url: "../image/" !default;
+$player-height: 50px;
+.jp-audio *:focus,
+.jp-audio-stream *:focus,
+.jp-video *:focus {
+	/* Disable the browser focus highlighting. */
+	outline:none;
+}
+
+.jp-audio button::-moz-focus-inner,
+.jp-audio-stream button::-moz-focus-inner,
+.jp-video button::-moz-focus-inner {
+	/* Disable the browser CSS3 focus highlighting. */
+	border: 0;
+}
+.jp-type-playlist{
+	float: left;
+	width: 100%;
+}
+.jp-audio{
+	float: left;
+	width: 100%;
+	margin-top: 35%;
+	height: $player-height;
+	margin-left: auto;
+	margin-right: auto;
+	background:rgba(#fff,.5);
+	position: relative;
+	button{
+		border: none;
+		background: transparent;
+		font-family: $Aw;
+		line-height: $player-height;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		cursor: pointer;
+		color: $text-color;
+		@include font-size(14px);
+		border-radius: 0;
+	}
+	.jp-current-song{
+		float: left;
+		width: 15%;
+		height: $player-height;
+		p{
+			line-height: $player-height*0.5;
+			float: left;
+			width: 100%;
+			margin-bottom: 0px;
+			margin-top: 0px;
+		}
+	}
+	.jp-type-playlist{
+		float: left;
+		margin-left: 15px;
+		.jp-gui{
+			float: left;
+			width: 100%;
+			height: auto;
+			.jp-controls{
+				float: left;
+				width: 12%;
+			}
+			.jp-progress{
+				float: left;
+				width: 45%;
+				height: $player-height;
+				cursor: pointer;
+				.jp-seek-bar{
+					float: left;
+					width: 100%;
+					position: relative;
+					@include center(y);
+					height: 2px;
+					background: rgba(#fff, .8);
+					border-radius: 5px;
+					.jp-play-bar{
+						float: left;
+						@extend .gradient;
+						height: 2px;
+					}
+				}
+			}
+			button{
+				// display: block;
+				&.jp-previous{
+					&:before{
+						content: "\f04a";
+					}
+				}
+				&.jp-play{
+					&:before{
+						content: "\f04b";
+					}
+				}
+				&.jp-next{
+					&:before{
+						content: "\f04e";
+					}
+				}
+				&.jp-stop{
+					&:before{
+						content: "\f04d";
+					}
+				}
+			}
+		}
+	}
+	&.jp-state-playing{
+		.jp-type-playlist{
+			.jp-gui{
+				button{
+					&.jp-play{
+						&:before{
+							content: "\f04c";
+						}
+					}
+				}
+			}
+		}
+	}
+	.jp-volume-controls{
+		font-family: $Aw;
+		float: left;
+		width: 40px;
+		line-height: $player-height;
+		margin-left: 10px;
+		.jp-mute{
+			&:before{
+				content: "\f028";
+				// content: "\f026";
+			}
+		}
+		.jp-volume-max{
+			display: none!important;
+			&:before{
+				content: "\f028";
+			}
+		}
+		.jp-volume-bar{
+			display: none!important;
+			float: left;
+			height: 2px;
+			width: 100px;
+			background: #fff;
+			cursor: pointer;
+			.jp-volume-bar-value{
+				float: left;
+				height: 2px;
+				@extend .gradient;
+			}
+		}
+	}
+	&.jp-state-muted{
+		.jp-volume-controls{
+
+			.jp-mute{
+				&:before{
+					content: "\f026";
+				}
+			}
+		}
+	}
+	.jp-time-holder{
+		float: left;
+		width: 10%;
+		line-height: 50px;
+		.jp-current-time{
+			&:after{
+				content: "/";
+				margin-left: 10px;
+			}
+			padding-right: 10px;
+		}
+		.jp-current-time, .jp-duration{
+			float: left;
+		}
+	}
+	.jp-toggles{
+		float: left;
+		// width: 5%;
+		button{
+			float: left;
+			&.jp-repeat{
+				&:before{
+					content: "\f01e";
+				}
+			}
+			&.jp-shuffle{
+				&:before{
+					content: "\f074";
+				}
+			}
+			&.jp-toshow{
+				&:before{
+					content: "\f001";
+				}
+				&.active{
+					color: $text-active;
+				}
+			}
+		}
+	}
+	&.jp-state-looped{
+		.jp-toggles{
+			button{
+				&.jp-repeat{
+					color: $text-active;
+				}
+			}
+		}
+	}
+	&.jp-state-shuffled{
+		.jp-toggles{
+			button{
+				&.jp-shuffle{
+					color: $text-active;
+				}
+			}
+		}
+	}
+	.jp-playlist{
+		display: none;
+		height: auto;
+		// opacity: 0;
+		position: absolute;
+		background:rgba(#fff,.5);
+		bottom: $player-height+$player-height*0.5;
+		right: 0px;
+		padding:15px;
+		// padding: 15px;
+		// border-radius: 5px;
+		// max-height: 200px;
+		overflow: hidden;
+		overflow-y: scroll;
+		z-index: 9999;
+		.contain-playlist{
+			max-height: 200px;
+			height: 200px;
+			overflow: hidden;
+			overflow-y:scroll;
+			float: left;
+			width: 100%;
+			height: auto;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			float: left;
+		}
+		ul{
+			// padding: 15px;
+			padding-left: 0px;
+			// pxheight: 200;
+			max-height: 200px;
+			float: left;
+			@include font-size(13px);
+			list-style: none;
+			width: 200px;
+			li{
+				// background: rgba(#000, 0.4);
+				float: left;
+				margin-bottom: 5px;
+				width: 100%;
+				a{
+					text-decoration: none;
+					color: $text-color;
+					float: left;
+					&:hover{
+						color: $text-active;
+					}
+					&.jp-playlist-item-remove{
+						display: block!important;;
+						color: red;
+						float: left;
+						margin-right: 5px;
+					}
+				}
+				.jp-artist{
+					@include font-size(11px);
+				}
+				&.jp-playlist-current{
+					a{
+						color:$text-active;
+						&.jp-playlist-item-remove{
+							color: red;
+						}
+					}
+				}
+			}
+		}
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
